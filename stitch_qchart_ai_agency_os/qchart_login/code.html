@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qchart - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0e1323",
+                        "danger": "#EF4444",
+                        "surface-secondary": "#12182B",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-secondary": "#003731",
+                        "secondary": "#44e2cd",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "primary-fixed-dim": "#c1c1ff",
+                        "primary": "#c1c1ff",
+                        "on-tertiary-fixed": "#311300",
+                        "inverse-on-surface": "#2b3041",
+                        "on-primary": "#1300a9",
+                        "secondary-container": "#03c6b2",
+                        "on-tertiary-fixed-variant": "#733500",
+                        "inverse-surface": "#dee1f9",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-lowest": "#080d1d",
+                        "primary-fixed": "#e1dfff",
+                        "surface-container-highest": "#2f3446",
+                        "inverse-primary": "#4949d9",
+                        "tertiary-container": "#b15500",
+                        "primary-container": "#5b5ceb",
+                        "on-background": "#dee1f9",
+                        "surface-container": "#1a1f30",
+                        "text-primary": "#F8FAFC",
+                        "tertiary-fixed": "#ffdbc7",
+                        "info": "#38BDF8",
+                        "on-tertiary": "#512300",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "surface-tint": "#c1c1ff",
+                        "surface-container-low": "#161b2b",
+                        "on-primary-fixed-variant": "#2f2bc1",
+                        "text-secondary": "#CBD5E1",
+                        "surface-variant": "#2f3446",
+                        "outline": "#908fa0",
+                        "on-tertiary-container": "#fff0ea",
+                        "outline-variant": "#464555",
+                        "surface-bright": "#34394a",
+                        "tertiary-fixed-dim": "#ffb689",
+                        "surface-container-high": "#25293a",
+                        "text-muted": "#94A3B8",
+                        "surface": "#0e1323",
+                        "on-secondary-container": "#004d44",
+                        "surface-dim": "#0e1323",
+                        "surface-elevated": "#1A2238",
+                        "on-primary-fixed": "#08006c",
+                        "error": "#ffb4ab",
+                        "success": "#22C55E",
+                        "warning": "#F59E0B",
+                        "secondary-fixed": "#62fae3",
+                        "on-primary-container": "#f5f2ff",
+                        "error-container": "#93000a",
+                        "tertiary": "#ffb689",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-surface": "#dee1f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "stack-xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, theme('colors.primary-container'), theme('colors.secondary-container'));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 0 20px rgba(91, 92, 235, 0.4);
+            transform: translateY(-1px);
+        }
+        .input-glass {
+            background: #12182B;
+            border: 1px solid theme('colors.outline-variant');
+            transition: all 0.2s ease;
+        }
+        .input-glass:focus {
+            outline: none;
+            border-color: theme('colors.primary-container');
+            box-shadow: 0 0 0 2px rgba(91, 92, 235, 0.2);
+            transform: translateY(-2px);
+        }
+        body {
+            background-image: radial-gradient(circle at 50% 0%, #1a1f30 0%, #0e1323 70%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop antialiased">
+<!-- Ambient background glow elements -->
+<div class="fixed top-0 left-1/4 w-96 h-96 bg-primary-container/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary-container/5 rounded-full blur-[150px] pointer-events-none"></div>
+<main class="w-full max-w-md relative z-10">
+<!-- Logo -->
+<div class="flex justify-center mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-text-primary tracking-tighter">
+                Qchart
+            </h1>
+</div>
+<!-- Login Card -->
+<div class="glass-card rounded-xl p-stack-lg w-full">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-stack-xs text-center">
+                Welcome back
+            </h2>
+<p class="font-body-md text-body-md text-text-muted text-center mb-stack-lg">
+                Enter your details to access your workspace
+            </p>
+<form action="#" class="flex flex-col gap-stack-md" method="POST">
+<!-- Email Input -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest" for="email">
+                        Email
+                    </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" data-icon="mail">mail</span>
+<input class="input-glass w-full rounded-lg py-3 pl-10 pr-4 font-body-md text-body-md text-text-primary placeholder-text-muted/50" id="email" name="email" placeholder="name@agency.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-stack-sm">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-widest" for="password">
+                            Password
+                        </label>
+<a class="font-caption text-caption text-primary hover:text-primary-fixed transition-colors" href="#">
+                            Forgot Password?
+                        </a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" data-icon="lock">lock</span>
+<input class="input-glass w-full rounded-lg py-3 pl-10 pr-4 font-body-md text-body-md text-text-primary placeholder-text-muted/50" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="btn-primary w-full rounded-lg py-3 font-body-md text-body-md font-semibold text-white mt-stack-sm flex items-center justify-center gap-2" type="submit">
+                    Sign In
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<div class="mt-stack-lg pt-stack-md border-t border-outline-variant/30 text-center">
+<p class="font-body-md text-body-md text-text-muted">
+                    Don't have an account? 
+                    <a class="text-primary hover:text-primary-fixed font-semibold transition-colors ml-1" href="#">
+                        Sign Up
+                    </a>
+</p>
+</div>
+</div>
+</main>
+<script>
+        // Subtle 3D tilt effect for the login card
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.glass-card');
+            
+            document.addEventListener('mousemove', (e) => {
+                if(window.innerWidth < 768) return; // Disable on mobile
+                
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                
+                card.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            // Reset on mouse leave
+            document.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+            
+            document.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+    </script>
+</body></html>

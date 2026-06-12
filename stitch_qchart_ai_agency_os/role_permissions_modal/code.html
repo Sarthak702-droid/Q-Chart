@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Role Permissions - Qchart Agency OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#161b2b",
+                      "surface-secondary": "#12182B",
+                      "primary": "#c1c1ff",
+                      "on-secondary-container": "#004d44",
+                      "tertiary-container": "#b15500",
+                      "warning": "#F59E0B",
+                      "surface-container-highest": "#2f3446",
+                      "on-background": "#dee1f9",
+                      "on-tertiary-container": "#fff0ea",
+                      "secondary": "#44e2cd",
+                      "primary-fixed": "#e1dfff",
+                      "surface-container-high": "#25293a",
+                      "on-secondary-fixed": "#00201c",
+                      "surface-elevated": "#1A2238",
+                      "success": "#22C55E",
+                      "surface-tint": "#c1c1ff",
+                      "on-primary-fixed-variant": "#2f2bc1",
+                      "on-tertiary-fixed": "#311300",
+                      "outline-variant": "#464555",
+                      "secondary-fixed-dim": "#3cddc7",
+                      "on-primary-container": "#f5f2ff",
+                      "background": "#0e1323",
+                      "text-muted": "#94A3B8",
+                      "error": "#ffb4ab",
+                      "danger": "#EF4444",
+                      "outline": "#908fa0",
+                      "surface-variant": "#2f3446",
+                      "info": "#38BDF8",
+                      "secondary-container": "#03c6b2",
+                      "on-surface-variant": "#c7c4d7",
+                      "on-primary-fixed": "#08006c",
+                      "surface-container-lowest": "#080d1d",
+                      "tertiary": "#ffb689",
+                      "inverse-surface": "#dee1f9",
+                      "primary-container": "#5b5ceb",
+                      "surface-dim": "#0e1323",
+                      "primary-fixed-dim": "#c1c1ff",
+                      "tertiary-fixed": "#ffdbc7",
+                      "secondary-fixed": "#62fae3",
+                      "surface": "#0e1323",
+                      "on-secondary-fixed-variant": "#005047",
+                      "error-container": "#93000a",
+                      "text-primary": "#F8FAFC",
+                      "surface-bright": "#34394a",
+                      "surface-container": "#1a1f30",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary": "#003731",
+                      "inverse-on-surface": "#2b3041",
+                      "on-surface": "#dee1f9",
+                      "text-secondary": "#CBD5E1",
+                      "on-primary": "#1300a9",
+                      "on-tertiary-fixed-variant": "#733500",
+                      "on-tertiary": "#512300",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#ffb689",
+                      "inverse-primary": "#4949d9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "32px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "stack-sm": "8px",
+                      "unit": "4px",
+                      "stack-xs": "4px",
+                      "container-max": "1440px",
+                      "stack-md": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "headline-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "caption": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                      "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                      "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                      "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                      "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                      "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glass-modal {
+            background: rgba(22, 27, 43, 0.85);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #c1c1ff;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #5b5ceb;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: white;
+        }
+        
+        /* Custom Checkbox */
+        .custom-checkbox:checked {
+            background-color: #5b5ceb;
+            border-color: #5b5ceb;
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body class="bg-background text-text-primary min-h-screen overflow-hidden font-body-md selection:bg-primary/30 selection:text-primary">
+<!-- Background Context (Blurred out Settings Screen) -->
+<div class="fixed inset-0 z-0 opacity-40 blur-sm pointer-events-none flex">
+<!-- Mock Sidebar -->
+<div class="w-[280px] h-screen bg-surface-container-low border-r border-outline-variant/12 p-stack-md">
+<div class="h-8 w-32 bg-surface-bright rounded-md mb-stack-lg"></div>
+<div class="space-y-stack-sm">
+<div class="h-10 w-full bg-surface-bright rounded-lg"></div>
+<div class="h-10 w-full bg-surface-bright rounded-lg opacity-50"></div>
+<div class="h-10 w-full bg-surface-bright rounded-lg opacity-50"></div>
+</div>
+</div>
+<!-- Mock Content -->
+<div class="flex-1 p-margin-desktop">
+<div class="h-12 w-64 bg-surface-bright rounded-lg mb-stack-lg"></div>
+<div class="grid grid-cols-3 gap-gutter">
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+</div>
+</div>
+</div>
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 z-40 bg-background/60 backdrop-blur-sm flex items-center justify-center p-margin-mobile md:p-margin-desktop">
+<!-- The Modal Container (Level 4 Floating) -->
+<div aria-modal="true" class="glass-modal w-full max-w-4xl max-h-[921px] rounded-2xl flex flex-col overflow-hidden relative" role="dialog">
+<!-- Header -->
+<header class="flex items-center justify-between px-stack-lg py-stack-md border-b border-outline-variant/20 bg-surface-container/50">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Role Permissions</h2>
+<p class="font-body-md text-body-md text-text-muted mt-unit">Manage access levels and capabilities across your agency workspace.</p>
+</div>
+<button aria-label="Close modal" class="text-text-muted hover:text-text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Role Selection Sidebar -->
+<aside class="w-64 border-r border-outline-variant/20 bg-surface-container-low/30 overflow-y-auto p-stack-sm flex flex-col gap-unit">
+<button class="w-full text-left px-stack-md py-3 rounded-lg bg-primary/10 border border-primary/20 text-primary font-body-md text-body-md flex items-center justify-between group transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-semibold">Admin</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(193,193,255,0.6)]"></span>
+</button>
+<button class="w-full text-left px-stack-md py-3 rounded-lg text-text-secondary hover:bg-white/5 hover:text-text-primary font-body-md text-body-md flex items-center gap-3 transition-colors border border-transparent">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">manage_accounts</span>
+<span>Manager</span>
+</button>
+<button class="w-full text-left px-stack-md py-3 rounded-lg text-text-secondary hover:bg-white/5 hover:text-text-primary font-body-md text-body-md flex items-center gap-3 transition-colors border border-transparent">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">support_agent</span>
+<span>Agent</span>
+</button>
+<div class="mt-auto pt-stack-md mb-stack-sm px-stack-sm">
+<button class="flex items-center gap-2 text-text-muted hover:text-primary transition-colors font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                            Create Custom Role
+                        </button>
+</div>
+</aside>
+<!-- Permissions Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-stack-lg bg-surface/20">
+<div class="max-w-2xl mx-auto space-y-stack-lg">
+<!-- Section: Workspace Access -->
+<section class="space-y-stack-md">
+<div class="flex items-center gap-2 border-b border-outline-variant/10 pb-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">Workspace Access</h3>
+</div>
+<div class="glass-panel rounded-xl divide-y divide-outline-variant/10">
+<!-- Permission Item -->
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors rounded-t-xl">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-dash">Dashboard Overview</label>
+<p class="font-caption text-caption text-text-muted mt-1">View high-level agency metrics and active campaigns.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-dash" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-dash"></label>
+</div>
+</div>
+<!-- Permission Item -->
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-analytics">Advanced Analytics</label>
+<p class="font-caption text-caption text-text-muted mt-1">Access detailed performance reports and export data.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-analytics" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-analytics"></label>
+</div>
+</div>
+<!-- Permission Item -->
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors rounded-b-xl">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-team">Team Management</label>
+<p class="font-caption text-caption text-text-muted mt-1">Invite users, assign roles, and manage permissions.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-team" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-team"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Communications -->
+<section class="space-y-stack-md">
+<div class="flex items-center gap-2 border-b border-outline-variant/10 pb-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 0;">forum</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">Communications</h3>
+</div>
+<div class="glass-panel rounded-xl p-stack-md">
+<div class="flex items-start justify-between gap-4 mb-stack-md">
+<div class="flex-1">
+<h4 class="font-body-md text-body-md font-semibold text-text-primary">Unified Inbox Access</h4>
+<p class="font-caption text-caption text-text-muted mt-1">Select which channels this role can view and respond to.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-inbox-master" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-inbox-master"></label>
+</div>
+</div>
+<div class="ml-8 space-y-3 border-l-2 border-outline-variant/20 pl-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="custom-checkbox w-4 h-4 rounded border-outline-variant bg-surface-variant cursor-pointer transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-secondary group-hover:text-text-primary transition-colors">Instagram DMs</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="custom-checkbox w-4 h-4 rounded border-outline-variant bg-surface-variant cursor-pointer transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-secondary group-hover:text-text-primary transition-colors">WhatsApp Business</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="custom-checkbox w-4 h-4 rounded border-outline-variant bg-surface-variant cursor-pointer transition-colors" type="checkbox"/>
+<span class="font-body-md text-body-md text-text-secondary group-hover:text-text-primary transition-colors">Gmail Integration</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Section: Financials -->
+<section class="space-y-stack-md">
+<div class="flex items-center gap-2 border-b border-outline-variant/10 pb-2">
+<span class="material-symbols-outlined text-success" style="font-variation-settings: 'FILL' 0;">payments</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">Financials</h3>
+</div>
+<div class="glass-panel rounded-xl divide-y divide-outline-variant/10">
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors rounded-t-xl">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-mrr">View Financial Metrics</label>
+<p class="font-caption text-caption text-text-muted mt-1">Access MRR, revenue reports, and financial forecasting.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-mrr" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-mrr"></label>
+</div>
+</div>
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors rounded-b-xl">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-billing">Manage Billing &amp; Invoices</label>
+<p class="font-caption text-caption text-text-muted mt-1">Create, send, and export client invoices. Manage subscriptions.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-billing" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-billing"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: AI Tools -->
+<section class="space-y-stack-md pb-stack-lg">
+<div class="flex items-center gap-2 border-b border-outline-variant/10 pb-2">
+<span class="material-symbols-outlined text-info" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">AI Capabilities</h3>
+</div>
+<div class="glass-panel rounded-xl divide-y divide-outline-variant/10 relative overflow-hidden">
+<!-- Subtle AI Glow Effect behind panel -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-info/20 rounded-full blur-[40px] pointer-events-none"></div>
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors rounded-t-xl relative z-10">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-ai-brief">AI Daily Brief</label>
+<p class="font-caption text-caption text-text-muted mt-1">Receive automated morning summaries of key agency activities.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-ai-brief" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-ai-brief"></label>
+</div>
+</div>
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors relative z-10">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-ai-draft">AI Response Drafting</label>
+<p class="font-caption text-caption text-text-muted mt-1">Use AI to generate suggested replies in the Unified Inbox.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-ai-draft" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-ai-draft"></label>
+</div>
+</div>
+<div class="p-stack-md flex items-start justify-between gap-4 hover:bg-white/[0.02] transition-colors rounded-b-xl relative z-10">
+<div class="flex-1">
+<label class="font-body-md text-body-md font-semibold text-text-primary cursor-pointer block" for="perm-ai-auto">Automation Settings</label>
+<p class="font-caption text-caption text-text-muted mt-1">Configure automated workflows and routing rules.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in mt-1">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-200" id="perm-ai-auto" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="perm-ai-auto"></label>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- Footer / Actions -->
+<footer class="p-stack-md border-t border-outline-variant/20 bg-surface-container/80 flex items-center justify-end gap-3 backdrop-blur-md">
+<button class="px-6 py-2 rounded-lg font-label-sm text-label-sm text-text-secondary border border-outline-variant/30 hover:bg-white/5 hover:text-text-primary transition-all duration-200">
+                    Cancel
+                </button>
+<button class="px-6 py-2 rounded-lg font-label-sm text-label-sm text-white bg-gradient-to-br from-primary-container to-secondary-container shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_15px_rgba(91,92,235,0.4)] transition-all duration-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                    Save Changes
+                </button>
+</footer>
+</div>
+</div>
+</body></html>

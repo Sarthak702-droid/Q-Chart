@@ -1,0 +1,12 @@
+{
+  "name": "qchat",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "backend": "uvicorn app.main:app --reload --app-dir backend"
+  },
+  "workspaces": [
+    "frontend"
+  ]
+}

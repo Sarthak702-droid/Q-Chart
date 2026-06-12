@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qchart Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#b15500",
+                    "on-tertiary-fixed-variant": "#733500",
+                    "on-tertiary-container": "#fff0ea",
+                    "surface-variant": "#2f3446",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "surface-elevated": "#1A2238",
+                    "primary-container": "#5b5ceb",
+                    "text-secondary": "#CBD5E1",
+                    "surface-secondary": "#12182B",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb689",
+                    "outline-variant": "#464555",
+                    "inverse-on-surface": "#2b3041",
+                    "success": "#22C55E",
+                    "on-error": "#690005",
+                    "text-primary": "#F8FAFC",
+                    "on-primary-fixed-variant": "#2f2bc1",
+                    "outline": "#908fa0",
+                    "inverse-primary": "#4949d9",
+                    "on-primary": "#1300a9",
+                    "on-surface": "#dee1f9",
+                    "surface-container-low": "#161b2b",
+                    "warning": "#F59E0B",
+                    "surface-dim": "#0e1323",
+                    "on-primary-fixed": "#08006c",
+                    "background": "#0e1323",
+                    "on-secondary-fixed-variant": "#005047",
+                    "primary": "#c1c1ff",
+                    "on-tertiary-fixed": "#311300",
+                    "secondary-fixed": "#62fae3",
+                    "text-muted": "#94A3B8",
+                    "danger": "#EF4444",
+                    "on-surface-variant": "#c7c4d7",
+                    "error-container": "#93000a",
+                    "surface": "#0e1323",
+                    "surface-container-lowest": "#080d1d",
+                    "on-background": "#dee1f9",
+                    "primary-fixed-dim": "#c1c1ff",
+                    "secondary": "#44e2cd",
+                    "surface-container-high": "#25293a",
+                    "tertiary-fixed-dim": "#ffb689",
+                    "primary-fixed": "#e1dfff",
+                    "on-secondary-fixed": "#00201c",
+                    "on-secondary": "#003731",
+                    "on-secondary-container": "#004d44",
+                    "info": "#38BDF8",
+                    "surface-container": "#1a1f30",
+                    "error": "#ffb4ab",
+                    "inverse-surface": "#dee1f9",
+                    "tertiary-fixed": "#ffdbc7",
+                    "secondary-container": "#03c6b2",
+                    "on-tertiary": "#512300",
+                    "surface-bright": "#34394a",
+                    "surface-container-highest": "#2f3446",
+                    "surface-tint": "#c1c1ff",
+                    "on-primary-container": "#f5f2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-xs": "4px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                    "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                    "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                    "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                    "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                    "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #c1c1ff 0%, #62fae3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(135deg, #4949d9 0%, #03c6b2 100%);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container min-h-screen flex">
+<!-- Background Atmospheric Glows -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[10%] w-[30%] h-[30%] rounded-full bg-secondary/5 blur-[100px]"></div>
+</div>
+<!-- SideNavBar (Left) -->
+<aside class="fixed left-0 top-0 h-screen z-40 bg-white/5 backdrop-blur-xl border-r border-white/10 shadow-2xl docked left-0 h-full w-[280px] flex flex-col hidden md:flex">
+<div class="p-stack-lg flex items-center gap-stack-sm border-b border-white/5">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-dim text-sm" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary">Qchart</h1>
+<p class="font-caption text-caption text-text-muted">Agency OS</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-stack-md flex flex-col gap-unit">
+<!-- Active: Dashboard -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-white/10 text-primary font-bold rounded-xl transition-all duration-200 Active: scale-95 transition-transform group relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined z-10" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md text-body-md z-10">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="font-body-md text-body-md">Inbox</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-body-md text-body-md">Workspace</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-body-md text-body-md">Leads</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-body-md text-body-md">Pipeline</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary mt-stack-md" href="#">
+<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+<span class="font-body-md text-body-md text-secondary">AI Assistant</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary mt-auto" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 rounded-xl transition-all duration-200 hover:text-text-primary" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="p-stack-md border-t border-white/5">
+<div class="flex items-center gap-stack-sm">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-white/20" data-alt="A small circular profile avatar of a professional user, isolated on a dark background. The lighting is studio quality, highlighting the sleek minimalist interface aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx-3sGeAKALo8dNyWYShkRyPPOURKcG3SNEFwGdhhvGqijSKK9kzYtkubV3JmFux908odRINu0MoHYFL9lOIdEe-tW3MyFxHgpiUuXm39pJhW8OV5xD1_reYkXtQDYsSf8q8V6_JB5Yd6Bh-uX7OD1BPy6nCiW4naamD7EWi8fWZ_HTX0IogqktDN67tUkQI-8cO2fl4XHYIQNa-iGGgBtA2aCbahkDRjHHTqCId5QHaQMPSx7gI9HTCGW_8R2Atnlj7Je5r-rupE"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-primary">Alex Mercer</span>
+<span class="font-caption text-caption text-text-muted">Founder</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (Top Center) -->
+<header class="fixed top-0 right-0 left-[280px] z-30 flex justify-between items-center px-gutter h-16 bg-surface/80 backdrop-blur-md hidden border-b border-white/10 md:flex">
+<div class="hidden text-headline-md font-headline-md font-bold text-primary">Qchart</div>
+<nav class="flex gap-stack-lg h-full items-center">
+<a class="text-text-muted hover:text-primary transition-colors font-body-md text-body-md Active: opacity-80 h-full flex items-center" href="#">Sales</a>
+<a class="text-text-muted hover:text-primary transition-colors font-body-md text-body-md h-full flex items-center" href="#">Support</a>
+<a class="text-text-muted hover:text-primary transition-colors font-body-md text-body-md h-full flex items-center" href="#">Founder</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-primary hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-primary hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+</header>
+<!-- NavigationDrawer (Right AI Panel) -->
+<aside class="fixed right-0 top-0 h-screen z-40 bg-white/8 backdrop-blur-2xl border-l border-white/12 shadow-[0_30px_80px_rgba(0,0,0,0.40)] docked right-0 h-full w-[320px] hidden xl:flex flex-col">
+<div class="p-stack-lg flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-elevated border border-secondary/30 flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h2 class="text-label-sm font-label-sm text-secondary tracking-widest uppercase">AI Assistant</h2>
+<p class="font-caption text-caption text-text-muted">Intelligent Briefing</p>
+</div>
+</div>
+<nav class="flex px-stack-md gap-unit border-b border-white/5 mb-stack-md">
+<!-- Active Tab -->
+<button class="flex-1 pb-stack-sm text-secondary font-bold border-b-2 border-secondary flex items-center justify-center gap-unit transition-all hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-body-md text-body-md">AI Daily Brief</span>
+</button>
+<!-- Inactive Tab -->
+<button class="flex-1 pb-stack-sm text-text-muted border-b-2 border-transparent flex items-center justify-center gap-unit transition-all hover:text-text-primary hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span class="font-body-md text-body-md">Recommended Actions</span>
+</button>
+</nav>
+<div class="flex-1 overflow-y-auto p-stack-md flex flex-col gap-stack-md">
+<!-- AI Content -->
+<div class="glass-card rounded-xl p-stack-md hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden border-secondary/20">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary/50 to-transparent"></div>
+<p class="font-body-md text-body-md text-text-primary leading-relaxed">
+                    Based on your patterns, I've prioritized your morning pipeline. <strong>ABC Agency</strong> is nearing SLA breach.
+                </p>
+<button class="mt-stack-sm flex items-center gap-unit text-secondary font-label-sm text-label-sm hover:text-primary transition-colors">
+                    Draft Response <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="glass-card rounded-xl p-stack-md hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-center gap-unit mb-stack-sm text-warning">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Attention</span>
+</div>
+<p class="font-caption text-caption text-text-muted">2 overdue leads require immediate follow-up to maintain your 24% conversion rate.</p>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 relative z-10 w-full md:ml-[280px] xl:mr-[320px] pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-margin-desktop space-y-stack-lg">
+<!-- Hero AI Brief -->
+<section class="glass-card rounded-2xl p-stack-lg relative overflow-hidden flex items-center justify-between group border border-primary/20 hover:border-primary/40 transition-colors duration-500">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-stack-sm max-w-2xl">
+<div class="flex items-center gap-unit mb-unit">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Daily Brief</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-text-primary tracking-tight leading-tight">
+                        Good morning! <br/>
+<span class="text-text-muted text-[36px]">You have <span class="text-primary">4 pending replies</span>, <span class="text-warning">2 overdue leads</span>, and <span class="text-text-primary">3 meetings</span> today.</span>
+</h2>
+</div>
+<div class="relative z-10 hidden lg:block">
+<!-- Decorative abstract visual element -->
+<div class="w-32 h-32 rounded-full border-[1px] border-dashed border-primary/30 flex items-center justify-center animate-spin-slow" style="animation-duration: 20s;">
+<div class="w-24 h-24 rounded-full bg-primary/10 blur-xl"></div>
+</div>
+</div>
+</section>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="glass-card rounded-xl p-stack-md flex flex-col gap-stack-sm hover:-translate-y-1 transition-transform duration-300">
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Leads Won</span>
+<div class="flex items-baseline gap-unit">
+<span class="font-headline-lg text-headline-lg text-text-primary">124</span>
+<span class="font-caption text-caption text-success flex items-center"><span class="material-symbols-outlined text-[14px]">trending_up</span> 12%</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-stack-md flex flex-col gap-stack-sm hover:-translate-y-1 transition-transform duration-300">
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Response Time</span>
+<div class="flex items-baseline gap-unit">
+<span class="font-headline-lg text-headline-lg text-text-primary">14</span>
+<span class="font-body-md text-body-md text-text-muted">min avg</span>
+</div>
+<div class="w-full bg-white/5 h-1 rounded-full mt-auto overflow-hidden">
+<div class="bg-secondary w-[80%] h-full rounded-full"></div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-stack-md flex flex-col gap-stack-sm hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden border-primary/20">
+<div class="absolute right-0 top-0 w-16 h-16 bg-primary/10 rounded-bl-full blur-md"></div>
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Conversion Rate</span>
+<div class="flex items-baseline gap-unit">
+<span class="font-headline-lg text-headline-lg text-gradient">24%</span>
+</div>
+<span class="font-caption text-caption text-text-muted">Top 10% performer</span>
+</div>
+<div class="glass-card rounded-xl p-stack-md flex flex-col gap-stack-sm hover:-translate-y-1 transition-transform duration-300">
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Team Performance</span>
+<div class="flex -space-x-2 mt-unit">
+<img alt="Team Member" class="w-8 h-8 rounded-full border-2 border-surface-container-highest" data-alt="A circular profile photo of a young professional in a brightly lit studio setting, conveying a sense of teamwork and modern agency life." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD45zhmhi_uks6gIDsf0FTdR4TBHtFU_X9mkKj3behRMHBzuw2LG1onowD_L3IG8k5fEwuB970MYNBMNx4w5DmEevkKWiJ_-3OQpwaBsQaHWh3YcHuwk11F_DERBPzJvcZYQAsMrBplK-waHVE5-z_EnysC7zSmjdsgz3IkxC4LSedklqpz4txqXNgw00x-VTMx4KXKmh3MQch4kyYPkZRxnl_IDTIBFP9A-eoZxmVkG2C8EJKaftrqzBLArXpjp-6B1BFCA4oV6Q"/>
+<img alt="Team Member" class="w-8 h-8 rounded-full border-2 border-surface-container-highest" data-alt="A circular profile portrait of a female professional with a neutral expression, shot against a stark dark background typical of premium dashboard UI aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7AyTbVm8hXUfMZq_ZiQsd-EWEdZZOAy3T8GkgA69u7K0NaMWgF4zUUD3tyDWIYd3rP-s2yjvR7Zx2t4UVvZyAQL43McvrsXuaTFBzMxQkG-LgwteFqiSJF_GT_tkJhK2dPUuWm1t7GXe6DZnm7IYKKlH7HRqmu6bs7CZgq8AhjCQlIKeL5XB_JHQhkajuI1V1nHAh0qpG_-zSWkpDCBjgYaaQLAxtXz6yJhoqlCA4dkhaVJqHF9uxtg0EOELKebP7ws4YVAh8s94"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-highest bg-surface-bright flex items-center justify-center text-xs text-text-primary">+3</div>
+</div>
+</div>
+</section>
+<!-- Main Content Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Action Feed -->
+<section class="lg:col-span-7 flex flex-col gap-stack-md">
+<div class="flex items-center justify-between mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-text-primary">Today's Priorities</h3>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors flex items-center gap-unit">
+                            View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden flex flex-col border border-white/5">
+<!-- Item 1 -->
+<div class="p-stack-md border-b border-white/5 flex items-start gap-stack-md hover:bg-white/5 transition-colors group cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center text-danger shrink-0 mt-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg text-text-primary font-medium group-hover:text-primary transition-colors">Reply to ABC Agency</h4>
+<span class="font-caption text-caption text-warning bg-warning/10 px-2 py-1 rounded-md">16h wait</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted mt-1">They are awaiting the final revised contract. SLA breach imminent.</p>
+<div class="mt-stack-sm flex gap-stack-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="btn-primary-gradient px-4 py-1.5 rounded-lg font-label-sm text-label-sm text-white shadow-lg">Draft Reply</button>
+<button class="px-4 py-1.5 rounded-lg font-label-sm text-label-sm text-text-primary bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-stack-md border-b border-white/5 flex items-start gap-stack-md hover:bg-white/5 transition-colors group cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-warning/10 flex items-center justify-center text-warning shrink-0 mt-1">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg text-text-primary font-medium group-hover:text-primary transition-colors">Follow up with XYZ Ltd</h4>
+<span class="font-caption text-caption text-text-muted">Proposal pending 2 days</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted mt-1">High intent lead. Proposal opened 3 times today.</p>
+<div class="mt-stack-sm flex gap-stack-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="btn-primary-gradient px-4 py-1.5 rounded-lg font-label-sm text-label-sm text-white shadow-lg">Quick Nudge</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-stack-md flex items-start gap-stack-md hover:bg-white/5 transition-colors group cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center text-text-muted shrink-0 mt-1 border border-white/10">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg text-text-primary font-medium group-hover:text-primary transition-colors">Instagram lead not replied to</h4>
+<span class="font-caption text-caption text-text-muted">New</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted mt-1">"Hey, do you guys handle e-commerce retention?"</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leads Requiring Attention -->
+<section class="lg:col-span-5 flex flex-col gap-stack-md">
+<div class="flex items-center justify-between mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-text-primary">Pipeline Health</h3>
+<div class="flex gap-unit">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+<span class="w-2 h-2 rounded-full bg-warning"></span>
+<span class="w-2 h-2 rounded-full bg-danger"></span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-stack-md flex flex-col gap-stack-sm border-t-2 border-t-warning/50">
+<!-- Lead 1 -->
+<div class="flex items-center justify-between py-stack-sm border-b border-white/5 last:border-0">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-10 rounded-full bg-danger shrink-0"></div>
+<div>
+<h4 class="font-body-md text-body-md text-text-primary font-medium">Acme Corp</h4>
+<p class="font-caption text-caption text-text-muted">Enterprise Tier</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</button>
+</div>
+<!-- Lead 2 -->
+<div class="flex items-center justify-between py-stack-sm border-b border-white/5 last:border-0">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-10 rounded-full bg-warning shrink-0"></div>
+<div>
+<h4 class="font-body-md text-body-md text-text-primary font-medium">TechStart Inc</h4>
+<p class="font-caption text-caption text-text-muted">Growth Tier</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</button>
+</div>
+<!-- Lead 3 -->
+<div class="flex items-center justify-between py-stack-sm border-b border-white/5 last:border-0">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-10 rounded-full bg-success shrink-0"></div>
+<div>
+<h4 class="font-body-md text-body-md text-text-primary font-medium">Global Media</h4>
+<p class="font-caption text-caption text-text-muted">Agency Tier</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

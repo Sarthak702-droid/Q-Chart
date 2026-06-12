@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qchart - Connect Your Communications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0e1323",
+                        "danger": "#EF4444",
+                        "surface-secondary": "#12182B",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-secondary": "#003731",
+                        "secondary": "#44e2cd",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "primary-fixed-dim": "#c1c1ff",
+                        "primary": "#c1c1ff",
+                        "on-tertiary-fixed": "#311300",
+                        "inverse-on-surface": "#2b3041",
+                        "on-primary": "#1300a9",
+                        "secondary-container": "#03c6b2",
+                        "on-tertiary-fixed-variant": "#733500",
+                        "inverse-surface": "#dee1f9",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-lowest": "#080d1d",
+                        "primary-fixed": "#e1dfff",
+                        "surface-container-highest": "#2f3446",
+                        "inverse-primary": "#4949d9",
+                        "tertiary-container": "#b15500",
+                        "primary-container": "#5b5ceb",
+                        "on-background": "#dee1f9",
+                        "surface-container": "#1a1f30",
+                        "text-primary": "#F8FAFC",
+                        "tertiary-fixed": "#ffdbc7",
+                        "info": "#38BDF8",
+                        "on-tertiary": "#512300",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "surface-tint": "#c1c1ff",
+                        "surface-container-low": "#161b2b",
+                        "on-primary-fixed-variant": "#2f2bc1",
+                        "text-secondary": "#CBD5E1",
+                        "surface-variant": "#2f3446",
+                        "outline": "#908fa0",
+                        "on-tertiary-container": "#fff0ea",
+                        "outline-variant": "#464555",
+                        "surface-bright": "#34394a",
+                        "tertiary-fixed-dim": "#ffb689",
+                        "surface-container-high": "#25293a",
+                        "text-muted": "#94A3B8",
+                        "surface": "#0e1323",
+                        "on-secondary-container": "#004d44",
+                        "surface-dim": "#0e1323",
+                        "surface-elevated": "#1A2238",
+                        "on-primary-fixed": "#08006c",
+                        "error": "#ffb4ab",
+                        "success": "#22C55E",
+                        "warning": "#F59E0B",
+                        "secondary-fixed": "#62fae3",
+                        "on-primary-container": "#f5f2ff",
+                        "error-container": "#93000a",
+                        "tertiary": "#ffb689",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-surface": "#dee1f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "stack-xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #c1c1ff; /* primary */
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #5b5ceb; /* primary-container */
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: white;
+        }
+        .toggle-label {
+            width: 44px;
+            height: 24px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .toggle-label:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex flex-col font-body-md bg-grid-pattern overflow-x-hidden">
+<!-- Top Navigation Bar (Simplified for Onboarding) -->
+<header class="fixed top-0 w-full h-16 bg-surface/30 backdrop-blur-md border-b border-outline-variant/10 shadow-sm flex items-center justify-between px-gutter z-50">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">Qchart</span>
+<span class="text-text-muted font-body-md text-body-md ml-2 border-l border-outline-variant/30 pl-2">Setup</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-text-muted font-body-md text-body-md">Step 2 of 4</div>
+<button class="text-text-secondary hover:text-primary transition-colors font-body-md text-body-md active:opacity-80">Skip for now</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center pt-24 pb-12 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl w-full">
+<!-- Header Section -->
+<div class="mb-stack-lg text-center">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-headline-lg-mobile mb-stack-sm text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Connect Your Communications</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl mx-auto">Link your primary messaging channels to Qchart. We'll automatically route leads, aggregate messages, and apply AI insights across all your conversations.</p>
+</div>
+<!-- Integration Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md mb-stack-lg">
+<!-- WhatsApp Business Card -->
+<div class="glass-card rounded-xl p-stack-md flex flex-col transition-all duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-[#25D366]/20 flex items-center justify-center border border-[#25D366]/30">
+<span class="material-symbols-outlined text-[#25D366]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">WhatsApp Business</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+<span class="font-caption text-caption text-success">Direct Integration</span>
+</div>
+</div>
+</div>
+<div class="relative inline-block w-11 mr-2 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 opacity-0" id="toggle_whatsapp" name="toggle_whatsapp" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="toggle_whatsapp"></label>
+</div>
+</div>
+<p class="font-body-md text-body-md text-text-muted mb-stack-md flex-grow">Connect your business number to handle client inquiries and automate responses directly from Qchart.</p>
+<div class="pt-stack-sm border-t border-outline-variant/20 flex items-center justify-between text-text-muted">
+<span class="font-caption text-caption flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">sync</span> Auto-sync</span>
+<span class="font-caption text-caption flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">verified_user</span> Official API</span>
+</div>
+</div>
+<!-- Instagram DMs Card -->
+<div class="glass-card rounded-xl p-stack-md flex flex-col transition-all duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] opacity-80 flex items-center justify-center p-[1px]">
+<div class="w-full h-full bg-surface-container-high rounded-[7px] flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Instagram DMs</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+<span class="font-caption text-caption text-success">Direct Integration</span>
+</div>
+</div>
+</div>
+<div class="relative inline-block w-11 mr-2 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 opacity-0" id="toggle_ig" name="toggle_ig" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="toggle_ig"></label>
+</div>
+</div>
+<p class="font-body-md text-body-md text-text-muted mb-stack-md flex-grow">Manage direct messages, story replies, and comments from your connected Instagram Professional account.</p>
+<div class="pt-stack-sm border-t border-outline-variant/20 flex items-center justify-between text-text-muted">
+<span class="font-caption text-caption flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">sync</span> Auto-sync</span>
+<span class="font-caption text-caption flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">verified_user</span> Meta Graph API</span>
+</div>
+</div>
+<!-- Facebook Messenger Card -->
+<div class="glass-card rounded-xl p-stack-md flex flex-col transition-all duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-[#0084FF]/20 flex items-center justify-center border border-[#0084FF]/30">
+<span class="material-symbols-outlined text-[#0084FF]" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Messenger</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-warning"></span>
+<span class="font-caption text-caption text-warning">API Key Required</span>
+</div>
+</div>
+</div>
+<div class="relative inline-block w-11 mr-2 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 opacity-0" id="toggle_fb" name="toggle_fb" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="toggle_fb"></label>
+</div>
+</div>
+<p class="font-body-md text-body-md text-text-muted mb-stack-md flex-grow">Connect your Facebook Page to route Messenger conversations into the unified inbox.</p>
+<div class="pt-stack-sm border-t border-outline-variant/20 flex items-center justify-between text-text-muted">
+<span class="font-caption text-caption flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">key</span> Manual Setup</span>
+<a class="font-caption text-caption text-primary hover:underline" href="#">View Guide</a>
+</div>
+</div>
+<!-- Gmail Card -->
+<div class="glass-card rounded-xl p-stack-md flex flex-col transition-all duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-danger" style="font-variation-settings: 'FILL' 1;">mail</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Gmail / Workspace</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+<span class="font-caption text-caption text-success">Direct Integration</span>
+</div>
+</div>
+</div>
+<div class="relative inline-block w-11 mr-2 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 opacity-0" id="toggle_gmail" name="toggle_gmail" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="toggle_gmail"></label>
+</div>
+</div>
+<p class="font-body-md text-body-md text-text-muted mb-stack-md flex-grow">Sync your email inbox. Qchart will thread emails alongside chat messages for a complete client history.</p>
+<div class="pt-stack-sm border-t border-outline-variant/20 flex items-center justify-between text-text-muted">
+<span class="font-caption text-caption flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-[16px]">check_circle</span> Connected (alex@agency.com)</span>
+<button class="font-caption text-caption text-text-muted hover:text-text-primary">Configure</button>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex justify-between items-center mt-stack-lg pt-stack-md border-t border-outline-variant/10">
+<button class="font-label-sm text-label-sm px-6 py-3 rounded-lg border border-outline-variant/30 text-text-secondary hover:bg-white/5 transition-colors">
+                    Back
+                </button>
+<button class="font-label-sm text-label-sm px-6 py-3 rounded-lg bg-gradient-to-r from-primary-container to-secondary-container text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:opacity-90 transition-opacity flex items-center gap-2">
+                    Continue to AI Setup
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+        // Simple script to handle toggle visuals if needed beyond CSS
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const card = e.target.closest('.glass-card');
+                if(e.target.checked) {
+                    card.classList.add('border-primary/50');
+                } else {
+                    card.classList.remove('border-primary/50');
+                }
+            });
+        });
+    </script>
+</body></html>

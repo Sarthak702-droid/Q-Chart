@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qchart - Unified Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#b15500",
+                    "on-tertiary-fixed-variant": "#733500",
+                    "on-tertiary-container": "#fff0ea",
+                    "surface-variant": "#2f3446",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "surface-elevated": "#1A2238",
+                    "primary-container": "#5b5ceb",
+                    "text-secondary": "#CBD5E1",
+                    "surface-secondary": "#12182B",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#ffb689",
+                    "outline-variant": "#464555",
+                    "inverse-on-surface": "#2b3041",
+                    "success": "#22C55E",
+                    "on-error": "#690005",
+                    "text-primary": "#F8FAFC",
+                    "on-primary-fixed-variant": "#2f2bc1",
+                    "outline": "#908fa0",
+                    "inverse-primary": "#4949d9",
+                    "on-primary": "#1300a9",
+                    "on-surface": "#dee1f9",
+                    "surface-container-low": "#161b2b",
+                    "warning": "#F59E0B",
+                    "surface-dim": "#0e1323",
+                    "on-primary-fixed": "#08006c",
+                    "background": "#0e1323",
+                    "on-secondary-fixed-variant": "#005047",
+                    "primary": "#c1c1ff",
+                    "on-tertiary-fixed": "#311300",
+                    "secondary-fixed": "#62fae3",
+                    "text-muted": "#94A3B8",
+                    "danger": "#EF4444",
+                    "on-surface-variant": "#c7c4d7",
+                    "error-container": "#93000a",
+                    "surface": "#0e1323",
+                    "surface-container-lowest": "#080d1d",
+                    "on-background": "#dee1f9",
+                    "primary-fixed-dim": "#c1c1ff",
+                    "secondary": "#44e2cd",
+                    "surface-container-high": "#25293a",
+                    "tertiary-fixed-dim": "#ffb689",
+                    "primary-fixed": "#e1dfff",
+                    "on-secondary-fixed": "#00201c",
+                    "on-secondary": "#003731",
+                    "on-secondary-container": "#004d44",
+                    "info": "#38BDF8",
+                    "surface-container": "#1a1f30",
+                    "error": "#ffb4ab",
+                    "inverse-surface": "#dee1f9",
+                    "tertiary-fixed": "#ffdbc7",
+                    "secondary-container": "#03c6b2",
+                    "on-tertiary": "#512300",
+                    "surface-bright": "#34394a",
+                    "surface-container-highest": "#2f3446",
+                    "surface-tint": "#c1c1ff",
+                    "on-primary-container": "#f5f2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-xs": "4px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "caption": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "display-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "caption": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0B1020;
+            color: #CBD5E1;
+            overflow: hidden; /* Prevent body scroll, handle internally */
+        }
+        
+        /* Glassmorphism Levels */
+        .glass-panel {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .glass-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        
+        /* Custom Scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Ambient Background Grid Glow */
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(91, 92, 235, 0.15) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased h-screen flex">
+<div class="ambient-glow"></div>
+<!-- SideNavBar (Shared Component JSON Blueprint) -->
+<nav class="fixed left-0 top-0 h-screen z-40 bg-white/5 backdrop-blur-xl border-r border-white/10 shadow-2xl flex flex-col docked left-0 h-full w-[280px] hidden md:flex">
+<!-- Header -->
+<div class="p-gutter flex items-center gap-stack-md border-b border-white/10">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
+<span class="font-headline-md text-headline-md font-bold text-surface-secondary">Q</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary">Qchart</h1>
+<p class="text-caption font-caption text-text-muted">Agency OS</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto py-stack-md px-stack-sm flex flex-col gap-unit">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- ACTIVE ITEM -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm bg-white/10 text-primary font-bold rounded-xl transition-all duration-200 Active: scale-95 transition-transform shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span>Inbox</span>
+<span class="ml-auto bg-primary text-on-primary text-label-sm font-label-sm px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span>Workspace</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span>Leads</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span>Pipeline</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span>AI Assistant</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span>Analytics</span>
+</a>
+</div>
+<!-- Footer -->
+<div class="p-stack-md border-t border-white/10">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm text-text-secondary hover:bg-white/5 transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col md:ml-[280px] h-screen overflow-hidden relative z-10">
+<!-- TopAppBar (Shared Component JSON Blueprint) -->
+<header class="bg-surface/80 backdrop-blur-md w-full h-16 flex justify-between items-center px-gutter shrink-0 z-30">
+<!-- Universal Search (Cmd+K style) -->
+<div class="flex-1 max-w-2xl relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="w-full bg-[#12182B] border border-white/10 rounded-xl py-2 pl-12 pr-12 text-text-primary font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] placeholder-text-muted/50" placeholder="Search across Email, IG, WhatsApp, Internal Notes... (Cmd+K)" type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 opacity-50">
+<kbd class="px-1.5 py-0.5 rounded-md bg-white/10 text-label-sm font-label-sm border border-white/10">⌘</kbd>
+<kbd class="px-1.5 py-0.5 rounded-md bg-white/10 text-label-sm font-label-sm border border-white/10">K</kbd>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md ml-gutter">
+<button class="text-text-muted hover:text-primary transition-colors Active: opacity-80 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 rounded-full bg-danger border-2 border-surface"></span>
+</button>
+<button class="text-text-muted hover:text-primary transition-colors Active: opacity-80">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-tertiary-container to-primary-container p-[1px]">
+<img alt="User Avatar" class="w-full h-full rounded-full object-cover" data-alt="A professional headshot of a young creative agency founder looking confidently at the camera, wearing dark minimalist clothing against a subtle studio backdrop with modern cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa4h55gQktFFiVSsYwIXxqdSqipoCaDcOJFROdtdP-jLtlJ2ATxIfm7yjL5W-K7Wrei7Wpa4H0xNaUScHElB7lkrzgRmqXeeKooXnaX3A2sY1wWB4SquuZ7J8W1DHUpeu6ObitP-_K54JDqZjF1790V2Hj7KKCgN0crUgk2oVSmT8CN3ROIXj7Ca8UUW-1Bwwxc70E4981_tC_mvS8ACcXxi2tU3jRGPmcUxggiN-dD2ibEhkthY_jHdZ9wBVNHViwEXXoJfqeWMM"/>
+</div>
+</div>
+</header>
+<!-- 3-Pane Layout -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Pane: Unified Thread List -->
+<div class="w-[320px] shrink-0 border-r border-white/10 flex flex-col glass-panel z-20">
+<div class="p-stack-md border-b border-white/10 flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md font-semibold text-text-primary">Inbox</h2>
+<button class="p-1.5 rounded-lg hover:bg-white/10 text-text-muted transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-stack-sm flex flex-col gap-unit">
+<!-- Thread Item (Active) -->
+<div class="p-stack-sm rounded-xl bg-white/10 border border-white/10 cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative group">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full"></div>
+<div class="flex justify-between items-start mb-1 pl-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+<span class="font-body-md text-body-md font-semibold text-primary">Sarah Jenkins</span>
+</div>
+<span class="text-caption font-caption text-text-muted">10m ago</span>
+</div>
+<div class="flex items-center gap-2 pl-2">
+<span class="material-symbols-outlined text-[14px] text-[#25D366]" data-icon="chat" data-weight="fill">chat</span> <!-- Fake WhatsApp icon -->
+<p class="text-caption font-caption text-text-secondary truncate pr-4">Yes, the new scope looks great. Let's proceed with...</p>
+</div>
+</div>
+<!-- Thread Item -->
+<div class="p-stack-sm rounded-xl hover:bg-white/5 border border-transparent cursor-pointer transition-colors group pl-4">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-medium text-text-primary">Marcus Vance</span>
+</div>
+<span class="text-caption font-caption text-text-muted">2h ago</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-info" data-icon="mail">mail</span>
+<p class="text-caption font-caption text-text-muted truncate pr-4">Re: Q3 Campaign Deliverables Review</p>
+</div>
+</div>
+<!-- Thread Item -->
+<div class="p-stack-sm rounded-xl hover:bg-white/5 border border-transparent cursor-pointer transition-colors group pl-4">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-warning"></span>
+<span class="font-body-md text-body-md font-medium text-text-primary">Neon Studios</span>
+</div>
+<span class="text-caption font-caption text-text-muted">Yesterday</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-[#E1306C]" data-icon="photo_camera">photo_camera</span> <!-- Fake IG icon -->
+<p class="text-caption font-caption text-text-muted truncate pr-4">Loved the moodboard! Can we tweak the...</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Pane: Active Conversation -->
+<div class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Conversation Header -->
+<div class="h-[72px] shrink-0 border-b border-white/10 px-gutter flex justify-between items-center bg-surface-secondary/50 backdrop-blur-sm z-10">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center text-text-primary font-bold">
+                            SJ
+                        </div>
+<div>
+<h2 class="font-headline-md text-[18px] font-semibold text-text-primary leading-tight">Sarah Jenkins</h2>
+<div class="flex items-center gap-2 text-caption font-caption text-text-muted">
+<span>CMO @ TechFlow</span>
+<span class="w-1 h-1 rounded-full bg-white/20"></span>
+<span>sarah@techflow.io</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-unit">
+<button class="p-2 rounded-lg hover:bg-white/10 text-text-muted hover:text-text-primary transition-colors" title="Mark Unread">
+<span class="material-symbols-outlined" data-icon="mark_as_unread">mark_as_unread</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-white/10 text-text-muted hover:text-text-primary transition-colors" title="Archive">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-white/10 text-text-muted hover:text-text-primary transition-colors ml-2">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Unified Timeline -->
+<div class="flex-1 overflow-y-auto p-gutter flex flex-col gap-stack-lg scroll-smooth pb-32">
+<!-- Date Separator -->
+<div class="flex items-center gap-4 my-2">
+<div class="h-[1px] flex-1 bg-white/5"></div>
+<span class="text-caption font-caption text-text-muted font-medium px-2">Today</span>
+<div class="h-[1px] flex-1 bg-white/5"></div>
+</div>
+<!-- Email Message -->
+<div class="glass-card rounded-2xl p-stack-md pl-12 relative">
+<div class="absolute -left-3 top-4 w-6 h-6 rounded-full bg-surface-elevated border border-white/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-info" data-icon="mail">mail</span>
+</div>
+<div class="absolute left-0 top-10 bottom-[-32px] w-[1px] bg-white/5"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-body-md text-body-md font-medium text-text-primary">Sarah Jenkins</span>
+<span class="text-caption font-caption text-text-muted ml-2">sarah@techflow.io</span>
+</div>
+<span class="text-caption font-caption text-text-muted">09:14 AM</span>
+</div>
+<div class="prose prose-invert max-w-none text-body-md font-body-md text-text-secondary leading-relaxed">
+<p class="mb-2">Hi Team,</p>
+<p>Just reviewing the Q3 scope document you sent over. Most of it looks fantastic, but I had a couple of quick questions regarding the timeline for the social assets.</p>
+<p>Can we jump on a quick call or should I just DM you the specific notes?</p>
+</div>
+</div>
+<!-- Internal Note -->
+<div class="bg-surface-bright/30 rounded-2xl p-stack-md pl-12 relative border border-dashed border-white/10">
+<div class="absolute -left-3 top-4 w-6 h-6 rounded-full bg-surface-bright border border-white/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="note_alt">note_alt</span>
+</div>
+<div class="absolute left-0 top-10 bottom-[-32px] w-[1px] bg-white/5"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<img alt="Team Member" class="w-5 h-5 rounded-full" data-alt="A small professional headshot of a female agency team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5r5ZH8Y7cITDJS9hhVHr58Ajvb8kntZwlKEBBch9uZS18hHkxi27_6TuhN5uJI0JumtVaG1WCX_DLxOOeVNWM7fte0FxAFz7EeaAvWZwcqZRTDgN9t1hMVw_MgT_7952D6zmf82GK3pJsOFkAs6YnXCIbDhwttjNLYepO1p0UaEdL_ZWVBGTtCxrDhbwQocmrLMbdpsCl5KzrAYCWqq7WAzofUR6HQCjJFDh3njYJ0qVSCcFKknfUMkuf-k62vACAFeBq1HAZt0o"/>
+<span class="font-body-md text-body-md font-medium text-tertiary">Alex Chen (Internal)</span>
+</div>
+<span class="text-caption font-caption text-text-muted">09:45 AM</span>
+</div>
+<p class="text-body-md font-body-md text-text-secondary italic">
+                            @alexa I'll handle the social assets timeline. The dev team needs an extra week so I'll text her to manage expectations.
+                        </p>
+</div>
+<!-- WhatsApp Message -->
+<div class="glass-card rounded-2xl p-stack-md pl-12 relative border-l-2 border-l-[#25D366]">
+<div class="absolute -left-[13px] top-4 w-6 h-6 rounded-full bg-surface-elevated border border-white/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-[#25D366]" data-icon="chat" data-weight="fill">chat</span>
+</div>
+<div class="flex justify-between items-start mb-3">
+<span class="font-body-md text-body-md font-medium text-text-primary">Sarah Jenkins (WhatsApp)</span>
+<span class="text-caption font-caption text-text-muted">10:02 AM</span>
+</div>
+<div class="bg-surface-variant/50 rounded-xl p-3 inline-block">
+<p class="text-body-md font-body-md text-text-primary">
+                                Yes, the new scope looks great. Let's proceed with the updated timeline for social. No need for a call! 🙌
+                            </p>
+</div>
+</div>
+</div>
+<!-- Compose Area -->
+<div class="absolute bottom-0 left-0 w-full p-gutter bg-gradient-to-t from-[#0B1020] via-[#0B1020]/90 to-transparent pt-12 z-20">
+<div class="glass-card rounded-2xl p-2 focus-within:border-primary/50 focus-within:shadow-[0_0_20px_rgba(91,92,235,0.15)] transition-all flex flex-col">
+<div class="flex gap-2 px-2 pb-2 border-b border-white/5 mb-2">
+<button class="text-caption font-caption font-medium px-3 py-1 rounded-md bg-white/10 text-text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="chat">chat</span> Reply via WhatsApp
+                                <span class="material-symbols-outlined text-[14px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="text-caption font-caption font-medium px-3 py-1 rounded-md hover:bg-white/5 text-text-muted flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="note_add">note_add</span> Add Internal Note
+                            </button>
+</div>
+<textarea class="w-full bg-transparent border-none text-text-primary font-body-md text-body-md resize-none focus:ring-0 placeholder-text-muted/50 min-h-[60px] p-2" placeholder="Type a message..." rows="2"></textarea>
+<div class="flex justify-between items-center px-2 pt-2">
+<div class="flex gap-1 text-text-muted">
+<button class="p-1.5 hover:bg-white/10 rounded-md transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="attach_file">attach_file</span></button>
+<button class="p-1.5 hover:bg-white/10 rounded-md transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="format_bold">format_bold</span></button>
+<button class="p-1.5 hover:bg-white/10 rounded-md transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="sentiment_satisfied">sentiment_satisfied</span></button>
+</div>
+<button class="bg-gradient-to-br from-[#5b5ceb] to-[#4949d9] hover:from-[#6b6cfb] hover:to-[#5959e9] text-white px-4 py-1.5 rounded-lg font-body-md text-body-md font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-all flex items-center gap-2 Active:scale-95">
+                                Send
+                                <span class="material-symbols-outlined text-[16px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Pane: Lead Profile Card -->
+<div class="w-[340px] shrink-0 border-l border-white/10 flex flex-col glass-panel z-20 hidden lg:flex">
+<div class="p-stack-md border-b border-white/10 flex items-center justify-between">
+<h3 class="font-headline-md text-[16px] font-semibold text-text-primary">Lead Intelligence</h3>
+<span class="material-symbols-outlined text-text-muted text-[18px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="flex-1 overflow-y-auto p-stack-md flex flex-col gap-stack-lg">
+<!-- Core Profile -->
+<div class="flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-2xl bg-surface-bright flex items-center justify-center text-headline-lg font-headline-lg text-text-primary mb-3 shadow-lg relative border border-white/10">
+                            SJ
+                            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-surface-elevated rounded-full flex items-center justify-center border-2 border-surface">
+<img alt="Company Logo" class="w-4 h-4 rounded-full" onerror="this.style.display='none'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw63Mk2srIE73ZTxKObLS19Qr5_8y4yCj0x881GzQkX4lAY2IZWnYICyvCZatbvdY9xLpyBS9rYg8kCBjdN0pMOunz6Oo1LQ1URBR9BuoJfZxkUEMYkPR4v28FgYaYKRvXwhjsTJCGz13DyfMLG9_3gkcr0hSXZeSOCVVxjmVwW6jauWEtw3AeVxCgOXGFXy_Xb0RjvMV2FAvAJPT0Vc_AFcsdoKubzpXbDjVj1FTsVChiRko2uxtMZ6N7kbgR2okGiUdXzfjoErg"/>
+</div>
+</div>
+<h2 class="font-headline-md text-[18px] font-semibold text-text-primary">Sarah Jenkins</h2>
+<p class="text-body-md font-body-md text-text-muted mb-4">CMO at TechFlow</p>
+<div class="flex gap-2 w-full">
+<button class="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg py-1.5 text-body-md font-body-md text-text-primary transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="call">call</span> Call
+                            </button>
+<button class="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg py-1.5 text-body-md font-body-md text-text-primary transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="event">event</span> Meet
+                            </button>
+</div>
+</div>
+<!-- AI Insights Widget -->
+<div class="glass-card rounded-xl p-stack-md border border-secondary/20 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-50"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="text-caption font-caption font-semibold text-secondary tracking-wider uppercase">Lead Score</span>
+<span class="text-headline-md font-headline-md font-bold text-text-primary">92/100</span>
+</div>
+<div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[92%] rounded-full shadow-[0_0_10px_rgba(68,226,205,0.5)]"></div>
+</div>
+<p class="text-caption font-caption text-text-secondary mt-1">
+                                High intent signal detected from recent document views and fast response times.
+                            </p>
+</div>
+</div>
+<!-- Details Accordion Concept -->
+<div class="flex flex-col gap-unit">
+<div class="flex justify-between items-center py-2 text-body-md font-body-md">
+<span class="text-text-muted">Stage</span>
+<span class="px-2 py-0.5 rounded-md bg-info/10 text-info border border-info/20 text-label-sm font-label-sm">Negotiation</span>
+</div>
+<div class="flex justify-between items-center py-2 text-body-md font-body-md">
+<span class="text-text-muted">Value</span>
+<span class="text-text-primary font-medium">$45,000 MRR</span>
+</div>
+<div class="flex justify-between items-center py-2 text-body-md font-body-md">
+<span class="text-text-muted">Location</span>
+<span class="text-text-primary">Austin, TX</span>
+</div>
+</div>
+<!-- Quick Internal Collab -->
+<div class="mt-auto">
+<h4 class="text-caption font-caption font-semibold text-text-muted uppercase tracking-wider mb-3">Team Notes</h4>
+<div class="glass-card rounded-xl p-3 border border-white/5">
+<textarea class="w-full bg-transparent border-none text-text-primary font-caption text-caption resize-none focus:ring-0 placeholder-text-muted/40 p-0 min-h-[40px]" placeholder="@mention team..." rows="2"></textarea>
+<div class="flex justify-end mt-2">
+<button class="text-caption font-caption font-medium text-primary hover:text-primary-fixed transition-colors">Save Note</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

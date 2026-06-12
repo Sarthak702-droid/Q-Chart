@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qchart - Lead Pipeline</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#b15500",
+                        "on-tertiary-fixed-variant": "#733500",
+                        "on-tertiary-container": "#fff0ea",
+                        "surface-variant": "#2f3446",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "surface-elevated": "#1A2238",
+                        "primary-container": "#5b5ceb",
+                        "text-secondary": "#CBD5E1",
+                        "surface-secondary": "#12182B",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb689",
+                        "outline-variant": "#464555",
+                        "inverse-on-surface": "#2b3041",
+                        "success": "#22C55E",
+                        "on-error": "#690005",
+                        "text-primary": "#F8FAFC",
+                        "on-primary-fixed-variant": "#2f2bc1",
+                        "outline": "#908fa0",
+                        "inverse-primary": "#4949d9",
+                        "on-primary": "#1300a9",
+                        "on-surface": "#dee1f9",
+                        "surface-container-low": "#161b2b",
+                        "warning": "#F59E0B",
+                        "surface-dim": "#0e1323",
+                        "on-primary-fixed": "#08006c",
+                        "background": "#0e1323",
+                        "on-secondary-fixed-variant": "#005047",
+                        "primary": "#c1c1ff",
+                        "on-tertiary-fixed": "#311300",
+                        "secondary-fixed": "#62fae3",
+                        "text-muted": "#94A3B8",
+                        "danger": "#EF4444",
+                        "on-surface-variant": "#c7c4d7",
+                        "error-container": "#93000a",
+                        "surface": "#0e1323",
+                        "surface-container-lowest": "#080d1d",
+                        "on-background": "#dee1f9",
+                        "primary-fixed-dim": "#c1c1ff",
+                        "secondary": "#44e2cd",
+                        "surface-container-high": "#25293a",
+                        "tertiary-fixed-dim": "#ffb689",
+                        "primary-fixed": "#e1dfff",
+                        "on-secondary-fixed": "#00201c",
+                        "on-secondary": "#003731",
+                        "on-secondary-container": "#004d44",
+                        "info": "#38BDF8",
+                        "surface-container": "#1a1f30",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#dee1f9",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-container": "#03c6b2",
+                        "on-tertiary": "#512300",
+                        "surface-bright": "#34394a",
+                        "surface-container-highest": "#2f3446",
+                        "surface-tint": "#c1c1ff",
+                        "on-primary-container": "#f5f2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-xs": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B1020; /* Dark canvas from style guide */
+        }
+        
+        /* Custom scrollbar for Kanban board */
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Glassmorphism Levels from Style Guide */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1); /* Inner Glow */
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(193, 193, 255, 0.3); /* subtle primary glow */
+        }
+        
+        .ai-widget {
+            border: 1px solid rgba(68, 226, 205, 0.3); /* secondary accent color */
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .ai-widget:hover {
+            border-color: rgba(68, 226, 205, 0.8);
+        }
+
+        /* Button Gradients */
+        .btn-primary {
+            background: linear-gradient(135deg, #4949d9, #03c6b2);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4), 0 4px 12px rgba(73, 73, 217, 0.3);
+        }
+        
+        /* Kanban Drag & Drop Visual Cues */
+        .drag-over {
+            background: rgba(193, 193, 255, 0.05);
+            border: 1px dashed rgba(193, 193, 255, 0.3);
+            border-radius: 0.5rem;
+        }
+        .dragging {
+            opacity: 0.5;
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="text-text-primary font-body-lg overflow-hidden h-screen w-screen relative">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-0 md:left-[280px] z-30 flex justify-between items-center px-gutter bg-surface/80 backdrop-blur-md border-b border-white/10 h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-text-secondary md:hidden cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md text-primary font-bold hidden md:block">Pipeline</h1>
+</div>
+<nav class="hidden md:flex gap-8 h-full">
+<a class="flex items-center font-body-md text-body-md text-text-muted hover:text-primary transition-colors" href="#">Sales</a>
+<a class="flex items-center font-body-md text-body-md text-text-muted hover:text-primary transition-colors" href="#">Support</a>
+<a class="flex items-center font-body-md text-body-md text-text-muted hover:text-primary transition-colors" href="#">Founder</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<!-- Search Input -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="bg-[#12182B] border border-white/10 rounded-full py-1.5 pl-10 pr-4 font-body-md text-body-md text-text-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200 placeholder:text-text-muted/50 w-64" placeholder="Search leads..." type="text"/>
+</div>
+<button class="text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-weight="fill">notifications</span>
+</button>
+<button class="text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-weight="fill">apps</span>
+</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-white/20" data-alt="A professional headshot of a young male executive with short dark hair, wearing a crisp white shirt, set against a blurred modern office background. High contrast, sharp focus, professional corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVWx2qriq477VIpb4kOXDGxwAF3VLW6wERqXUhqXrQkO3G3qxICayx800d-WV-RXNfQqNGxFP7P3Bkb4ANU4UM6ANSkHxK0YW-_GhC-tqD3FCNuDiEF_m_u8JU_tK6Y9OBDQRUv28p3LLRR1D9xvDK4Y9NlCbzYs8rRhnD8IAI7PDY2PqfwnqVwwXcdN5KFWLq2VM7nY5XbGN4GjUV3lqAiszdwrksG1G4PWQleDlA8jGWUvy12EwU1b4hj_lq0IQdADIHFVIKmqA"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen z-40 bg-white/5 backdrop-blur-xl border-r border-white/10 shadow-2xl w-[280px] hidden md:flex flex-col">
+<div class="p-gutter flex items-center gap-3 border-b border-white/5">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+<span class="font-headline-md text-headline-md font-bold text-white">Q</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Qchart</h2>
+<p class="font-caption text-caption text-text-muted">Agency OS</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-stack-md flex flex-col gap-unit">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">inbox</span>
+<span>Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">grid_view</span>
+<span>Workspace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">person_search</span>
+<span>Leads</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md bg-white/10 text-primary font-bold scale-95 transition-transform group relative" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Pipeline</span>
+<!-- Glass reveal indicator simulation -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_8px_rgba(193,193,255,0.6)]"></div>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">auto_awesome</span>
+<span>AI Assistant</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">insights</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl font-body-md text-body-md text-text-secondary hover:bg-white/5 transition-all duration-200 group relative mt-auto" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="md:pl-[280px] pt-16 h-full flex flex-col relative z-10">
+<!-- Pipeline Header & Controls -->
+<div class="px-gutter py-stack-md flex justify-between items-center shrink-0">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-1">Q3 Sales Pipeline</h2>
+<p class="font-body-md text-body-md text-text-muted">Manage and track your active prospects.</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<!-- AI Smart Prioritization Toggle -->
+<div class="glass-panel px-4 py-2 rounded-full border border-white/10 flex items-center gap-3 ai-widget cursor-pointer">
+<span class="material-symbols-outlined text-secondary text-[20px]">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-text-primary">AI Smart Prioritization</span>
+<div class="w-8 h-4 bg-white/20 rounded-full relative ml-2">
+<div class="absolute left-[2px] top-[2px] w-3 h-3 bg-white rounded-full transition-all"></div>
+</div>
+</div>
+<button class="btn-primary px-4 py-2 rounded-lg font-label-sm text-label-sm text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Lead
+                </button>
+</div>
+</div>
+<!-- Kanban Board Area -->
+<div class="flex-1 overflow-x-auto overflow-y-hidden p-gutter pt-0 flex gap-gutter custom-scrollbar pb-6">
+<!-- Stage: New -->
+<div class="flex-shrink-0 w-[300px] flex flex-col h-full">
+<div class="flex justify-between items-center mb-stack-md px-2">
+<h3 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-info"></div>
+                        New
+                        <span class="bg-white/10 px-2 py-0.5 rounded-full text-[10px] ml-1">2</span>
+</h3>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-stack-md pr-2 custom-scrollbar">
+<!-- Lead Card 1 -->
+<div class="glass-card p-stack-md rounded-xl cursor-grab active:cursor-grabbing" draggable="true">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-headline-md text-[16px] leading-tight text-text-primary font-semibold">Sarah Jenkins</h4>
+<p class="font-caption text-caption text-text-muted">Nexus Dynamics</p>
+</div>
+<div class="w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(34,197,94,0.6)]" title="Lead Health: Good"></div>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded font-caption text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> Score: 88
+                            </span>
+<span class="font-caption text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> 2h ago
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-white/5">
+<div class="font-caption text-[11px] text-text-muted">$45k Est. Value</div>
+<img alt="Assignee" class="w-6 h-6 rounded-full border border-white/20" data-alt="A professional headshot of a young woman with dark hair pulled back, wearing a black top. High quality, sharp focus, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMuBcj_Ko2WLHg2TAs0x7O5yR_eqElVXeU3uektveLh8VO4zK3KOnf1DBCylW2hwuu5jDfF5QhWUqF9gxLW-NghHhSx_AOaWzZSdUx1k-D8EdgjJpr3I2FQKtypPUaZMQZiYtIptGMl5eIaMVPAfAEMKqX0rvJdukHtuLX2r9Ncqgil0V9qB1e7sO18x_TzUD3vslYeJ3YHYwXyb3iPA_kCzgd0p3eoo3iOmWAx5tcVTSYyQuCGIo-ltpkfdDdPU3ZOmqJKZOJ0bo"/>
+</div>
+</div>
+<!-- Lead Card 2 -->
+<div class="glass-card p-stack-md rounded-xl cursor-grab active:cursor-grabbing" draggable="true">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-headline-md text-[16px] leading-tight text-text-primary font-semibold">Michael Chen</h4>
+<p class="font-caption text-caption text-text-muted">Alpaca Tech</p>
+</div>
+<div class="w-2 h-2 rounded-full bg-warning shadow-[0_0_8px_rgba(245,158,11,0.6)]" title="Lead Health: Warning"></div>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-white/10 text-text-secondary border border-white/20 px-2 py-0.5 rounded font-caption text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> Score: 62
+                            </span>
+<span class="font-caption text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> 18h ago
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-white/5">
+<div class="font-caption text-[11px] text-text-muted">$12k Est. Value</div>
+<img alt="Assignee" class="w-6 h-6 rounded-full border border-white/20" data-alt="A professional headshot of a young man with short dark hair and a light beard, wearing a grey t-shirt. High quality, sharp focus, casual corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVUR39vUsuU7aucpS07oQ6ZknfSt4X2bntBEtn4uNtE89--1tNty6RxPv-LCj5cgS9wRaTW6jJsHqevb6kBbT3nteD-H-ZI0y5mA3CpxlejYjJ9Va4Bc3xQZguBqPovOQEOJYyhTcVSWxg-KyVyEbVOxbGaFD-CuqiY9T-yXl4OUP_p0ukknaGqCtaX2e7KbTz9mcRX0I5-zXT9eNhXqYGMgUKFpC5Mx3JBI3lbnWgH2YVbv4jasXem1VyjfuREhifEvnfy0ZBC9o"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Stage: Contacted -->
+<div class="flex-shrink-0 w-[300px] flex flex-col h-full">
+<div class="flex justify-between items-center mb-stack-md px-2">
+<h3 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+                        Contacted
+                        <span class="bg-white/10 px-2 py-0.5 rounded-full text-[10px] ml-1">1</span>
+</h3>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-stack-md pr-2 custom-scrollbar">
+<!-- Lead Card 3 -->
+<div class="glass-card p-stack-md rounded-xl cursor-grab active:cursor-grabbing" draggable="true">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-headline-md text-[16px] leading-tight text-text-primary font-semibold">Elena Rostova</h4>
+<p class="font-caption text-caption text-text-muted">Global Freight</p>
+</div>
+<div class="w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(34,197,94,0.6)]" title="Lead Health: Good"></div>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded font-caption text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> Score: 91
+                            </span>
+<span class="font-caption text-[11px] text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> 1d ago
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-white/5">
+<div class="font-caption text-[11px] text-text-muted">$80k Est. Value</div>
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center font-caption text-[10px] text-text-primary border border-white/20">JD</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stage: Qualified -->
+<div class="flex-shrink-0 w-[300px] flex flex-col h-full">
+<div class="flex justify-between items-center mb-stack-md px-2">
+<h3 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+                        Qualified
+                        <span class="bg-white/10 px-2 py-0.5 rounded-full text-[10px] ml-1">0</span>
+</h3>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-stack-md pr-2 custom-scrollbar drag-over flex items-center justify-center opacity-50">
+<p class="font-caption text-text-muted text-center">Drop cards here</p>
+</div>
+</div>
+<!-- Stage: Meeting Scheduled -->
+<div class="flex-shrink-0 w-[300px] flex flex-col h-full">
+<div class="flex justify-between items-center mb-stack-md px-2">
+<h3 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-warning"></div>
+                        Meeting Scheduled
+                        <span class="bg-white/10 px-2 py-0.5 rounded-full text-[10px] ml-1">1</span>
+</h3>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-stack-md pr-2 custom-scrollbar">
+<!-- Lead Card 4 -->
+<div class="glass-card p-stack-md rounded-xl cursor-grab active:cursor-grabbing" draggable="true">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-headline-md text-[16px] leading-tight text-text-primary font-semibold">David Park</h4>
+<p class="font-caption text-caption text-text-muted">Venture Capital LLC</p>
+</div>
+<div class="w-2 h-2 rounded-full bg-danger shadow-[0_0_8px_rgba(239,68,68,0.6)]" title="Lead Health: Critical"></div>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded font-caption text-[10px] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> Score: 95
+                            </span>
+<span class="font-caption text-[11px] text-danger flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span> No show prev
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-white/5">
+<div class="font-caption text-[11px] text-text-muted">$120k Est. Value</div>
+<img alt="Assignee" class="w-6 h-6 rounded-full border border-white/20" data-alt="A professional headshot of a young male executive with short dark hair, wearing a crisp white shirt, set against a blurred modern office background. High contrast, sharp focus, professional corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArsZlJ8kAh_rBcVQ6s5RA8hcpTaK1YtoMdcuMDaoM3IQ7xULvOOwuC3kn0eIfvJ7F1ZkXXRr1m6p76KuBitPCqmzAHVrxwWAdtIIU5jQQpIEYgy4ngW--phFi_H_7IbwklQTXq44tq3rrNwF6YTPZReiC-ElLprrR_fHFzoW4USWwbo7AcBaxtmrHFlDJffuOHyW9k3gnxKgdC4wgJkufLwyrzF-hy1t1XXnnxWR_65wLo9JnNAc2y052c2zH76YMl6eZ5MwGUlDQ"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
