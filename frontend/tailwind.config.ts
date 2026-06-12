@@ -9,8 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-syncopate)", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"]
+        sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-hanken)", "sans-serif"],
+        hanken: ["var(--font-hanken)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"]
       }
     }
   },

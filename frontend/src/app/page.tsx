@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import Lenis from "@studio-freight/lenis";
 import {
   Bot,
   type LucideIcon,
@@ -17,36 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { ScrollAnimator } from "@/components/ScrollAnimator";
-
-type SceneItem =
-  | {
-      id: string;
-      type: "text";
-      label: string;
-      x: number;
-      y: number;
-      rot: number;
-      baseZ: number;
-    }
-  | {
-      id: string;
-      type: "card";
-      label: string;
-      meta: string;
-      x: number;
-      y: number;
-      rot: number;
-      baseZ: number;
-    };
-
-type LenisScrollEvent = {
-  scroll: number;
-  velocity: number;
-};
-
 const platforms = ["WhatsApp", "Instagram", "Messenger", "Telegram", "Email", "Live Chat"];
-const sceneLabels = ["INBOX", "AI REPLY", "OMNI", "QCHAT", "FAST", "SYNC", "AGENT", "SALES"];
 const roadmap = [
   ["01", "Unified Inbox", "All customer conversations in one operational queue."],
   ["02", "Live Chat Widget", "Paste one script and capture website buyers in real time."],
@@ -61,182 +30,13 @@ const features: Array<[LucideIcon, string, string]> = [
   [ShieldCheck, "Service boundaries", "Auth, integrations, inbox, AI, and webhooks are separated from day one."]
 ];
 
-function useScrollHud() {
-  const [hud, setHud] = useState({ velocity: "0.00", coord: "000.000", fps: 60 });
-  const worldRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true, syncTouch: true });
-    const state = {
-      scroll: 0,
-      velocity: 0,
-      targetSpeed: 0,
-      mouseX: 0,
-      mouseY: 0
-    };
-    let lastTime = performance.now();
-    let frame = 0;
-
-    const onMouseMove = (event: MouseEvent) => {
-      state.mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
-      state.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
-    };
-
-    lenis.on("scroll", ({ scroll, velocity }: LenisScrollEvent) => {
-      state.scroll = scroll;
-      state.targetSpeed = velocity;
-    });
-
-    window.addEventListener("mousemove", onMouseMove);
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      const delta = Math.max(time - lastTime, 1);
-      lastTime = time;
-      frame += 1;
-      state.velocity += (state.targetSpeed - state.velocity) * 0.1;
-
-      const tiltX = state.mouseY * 5 - state.velocity * 0.45;
-      const tiltY = state.mouseX * 5;
-      if (worldRef.current) {
-        worldRef.current.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-      }
-      if (viewportRef.current) {
-        const fov = 1000 - Math.min(Math.abs(state.velocity) * 10, 520);
-        viewportRef.current.style.perspective = `${fov}px`;
-      }
-
-      if (frame % 8 === 0) {
-        setHud({
-          velocity: Math.abs(state.velocity).toFixed(2),
-          coord: state.scroll.toFixed(0).padStart(3, "0"),
-          fps: Math.round(1000 / delta)
-        });
-      }
-
-      requestAnimationFrame(raf);
-    };
-
-    const animation = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(animation);
-      window.removeEventListener("mousemove", onMouseMove);
-      lenis.destroy();
-    };
-  }, []);
-
-  return { hud, worldRef, viewportRef };
-}
-
-function HyperScene() {
-  const { hud, worldRef, viewportRef } = useScrollHud();
-  const items = useMemo<SceneItem[]>(() => {
-    return Array.from({ length: 18 }, (_, index) => {
-      const isHeading = index % 4 === 0;
-      const angle = (index / 18) * Math.PI * 6;
-      const x = Math.cos(angle) * 380;
-      const y = Math.sin(angle) * 230;
-      if (isHeading) {
-        return {
-          id: `text-${index}`,
-          type: "text",
-          label: sceneLabels[index % sceneLabels.length],
-          x: 0,
-          y: 0,
-          rot: index % 2 === 0 ? -4 : 4,
-          baseZ: -index * 720
-        };
-      }
-
-      return {
-        id: `card-${index}`,
-        type: "card",
-        label: sceneLabels[index % sceneLabels.length],
-        meta: platforms[index % platforms.length],
-        x,
-        y,
-        rot: index % 2 === 0 ? 9 : -13,
-        baseZ: -index * 720
-      };
-    });
-  }, []);
-
-  return (
-    <>
-      <div className="scanlines" />
-      <div className="vignette" />
-      <div className="noise" />
-      <div className="hud">
-        <div className="hud-row">
-          <span>QCHAT.SYS.READY</span>
-          <div className="hud-line" />
-          <span>
-            FPS: <strong>{hud.fps}</strong>
-          </span>
-        </div>
-        <div className="hud-vertical">
-          SCROLL VELOCITY // <strong>{hud.velocity}</strong>
-        </div>
-        <div className="hud-row">
-          <span>
-            COORD: <strong>{hud.coord}</strong>
-          </span>
-          <div className="hud-line" />
-          <span>MVP 0.1 [BETA]</span>
-        </div>
-      </div>
-      <div className="viewport" ref={viewportRef}>
-        <div className="world" ref={worldRef}>
-          {items.map((item) => (
-            <div
-              className="scene-item"
-              key={item.id}
-              style={{
-                transform: `translate3d(${item.x}px, ${item.y}px, ${item.baseZ}px) rotateZ(${item.rot}deg)`
-              }}
-            >
-              {item.type === "text" ? (
-                <div className="big-text">{item.label}</div>
-              ) : (
-                <div className="hyper-card">
-                  <div className="hyper-card-header">
-                    <span>ID-{String(item.baseZ).replace("-", "")}</span>
-                    <i />
-                  </div>
-                  <h2>{item.label}</h2>
-                  <div className="hyper-card-footer">
-                    <span>{item.meta}</span>
-                    <span>AI_READY</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-          {Array.from({ length: 120 }, (_, index) => (
-            <span
-              aria-hidden="true"
-              className="star"
-              key={index}
-              style={{
-                transform: `translate3d(${(index % 17) * 145 - 1200}px, ${
-                  (index % 11) * 110 - 620
-                }px, ${-(index * 131) % 11000}px)`
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    </>
-  );
-}
-
 export default function Home() {
   return (
-    <main>
-      <ScrollAnimator />
-      <HyperScene />
+    <main className="premium-bg overflow-x-hidden min-h-screen relative">
+      {/* Ambient background glow elements */}
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-[#5b5ceb]/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-[#2dd4bf]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
       <section className="hero-section">
         <nav className="top-nav" aria-label="Main navigation">
           <Link className="brand" href="/">
