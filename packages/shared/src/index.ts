@@ -103,16 +103,31 @@ export const analyticsSummary = {
 export function moveLeadStage(leadId: string, stage: LeadStage) {
   const lead = leads.find((item) => item.id === leadId);
   if (!lead) throw new Error(`Lead not found: ${leadId}`);
-  return { ...lead, stage };
+  lead.stage = stage;
+  lead.updatedAt = new Date().toISOString();
+  return lead;
 }
 
 export function appendMessage(conversationId: string, body: string) {
   const conversation = conversations.find((item) => item.id === conversationId);
   if (!conversation) throw new Error(`Conversation not found: ${conversationId}`);
-  return { ...conversation, unread: false, lastMessage: body, messages: [...conversation.messages, { id: `m${Date.now()}`, sender: profile.fullName, body, channel: conversation.channel, sentAt: "Now", direction: "outbound" as const }] };
+  const newMsg = { 
+    id: `m_${Date.now()}`, 
+    sender: profile.fullName, 
+    body, 
+    channel: conversation.channel, 
+    sentAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), 
+    direction: "outbound" as const 
+  };
+  conversation.messages.push(newMsg);
+  conversation.lastMessage = body;
+  conversation.unread = false;
+  conversation.updatedAt = "Just now";
+  return conversation;
 }
 
 export function createCsvReport() {
   const rows = [["Metric", "Value"], ["Workspace", workspace.name], ["MRR", String(analyticsSummary.mrr)], ["Leads Won", String(analyticsSummary.leadsWon)], ["Conversion Rate", `${analyticsSummary.conversionRate}%`]];
   return rows.map((row) => row.join(",")).join("\n");
 }
+
