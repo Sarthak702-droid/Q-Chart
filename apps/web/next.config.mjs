@@ -6,11 +6,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
-  experimental: {
-    // Explicitly lock the Turbopack root directory to the monorepo root (two levels up)
-    turbopack: {
-      root: path.resolve(__dirname, "../../"),
-    },
+  // Move 'turbopack' from 'experimental' to a top-level configuration key
+  turbopack: {
+    root: path.resolve(__dirname, "../../"),
   },
 };
 
