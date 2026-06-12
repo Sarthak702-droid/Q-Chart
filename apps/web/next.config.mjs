@@ -1,1 +1,17 @@
-export default { poweredByHeader: false };
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  poweredByHeader: false,
+  experimental: {
+    // Explicitly lock the Turbopack root directory to the monorepo root (two levels up)
+    turbopack: {
+      root: path.resolve(__dirname, "../../"),
+    },
+  },
+};
+
+export default nextConfig;
