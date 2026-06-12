@@ -25,7 +25,7 @@ async function fetchService<T>(url: string, fallback: T): Promise<T> {
 function send(res: http.ServerResponse, status: number, body: unknown, headers: Record<string, string> = {}) {
   const payload = typeof body === "string" ? body : JSON.stringify(body);
   res.writeHead(status, {
-    "Access-Control-Allow-Origin": process.env.WEB_ORIGIN ?? "http://localhost:3000",
+    "Access-Control-Allow-Origin": process.env.WEB_ORIGIN ?? "http://localhost:3001",
     "Access-Control-Allow-Headers": "authorization, content-type",
     "Access-Control-Allow-Methods": "GET,POST,PATCH,OPTIONS",
     "Content-Type": typeof body === "string" ? "text/plain; charset=utf-8" : "application/json; charset=utf-8",
