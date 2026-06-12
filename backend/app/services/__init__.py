@@ -1,1 +1,0 @@
-"""QChat service modules."""

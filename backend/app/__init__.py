@@ -1,1 +1,0 @@
-"""QChat FastAPI backend."""
