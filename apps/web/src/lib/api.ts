@@ -4,8 +4,6 @@ import useSWR, { mutate } from "swr";
 import { analyticsSummary, channels, conversations, createCsvReport, dashboardSummary, leads, profile, workspace } from "@qchart/shared";
 import { createSupabaseClient } from "./supabase";
 
-const gatewayUrl = process.env.NEXT_PUBLIC_GATEWAY_URL ?? "http://localhost:4100";
-
 async function getAuthHeader(): Promise<string> {
   try {
     const supabase = createSupabaseClient();
@@ -20,10 +18,9 @@ async function getAuthHeader(): Promise<string> {
 }
 
 async function fetcher<T>(path: string, fallback: T): Promise<T> {
-  if (!gatewayUrl) return fallback;
   try {
     const authHeader = await getAuthHeader();
-    const response = await fetch(`${gatewayUrl}${path}`, { 
+    const response = await fetch(`/api${path}`, { 
       headers: { 
         Authorization: authHeader,
         "Content-Type": "application/json"
@@ -57,7 +54,7 @@ export function exportReport() {
 export async function postMessage(conversationId: string, body: string) {
   try {
     const authHeader = await getAuthHeader();
-    const response = await fetch(`${gatewayUrl}/messages`, {
+    const response = await fetch(`/api/messages`, {
       method: "POST",
       headers: {
         Authorization: authHeader,
@@ -83,7 +80,7 @@ export async function postMessage(conversationId: string, body: string) {
 export async function updateLeadStage(leadId: string, stage: string) {
   try {
     const authHeader = await getAuthHeader();
-    const response = await fetch(`${gatewayUrl}/leads/${leadId}`, {
+    const response = await fetch(`/api/leads/${leadId}`, {
       method: "PATCH",
       headers: {
         Authorization: authHeader,
