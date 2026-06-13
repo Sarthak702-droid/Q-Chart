@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bun --filter @qchart/web dev",
     "dev:api": "bun --filter @qchart/gateway dev",
+    "dev:all": "bun --filter @qchart/web --filter @qchart/gateway --filter @qchart/analytics --filter @qchart/conversations --filter @qchart/reports --filter @qchart/sync dev",
     "build": "bun --filter \"*\" build",
     "lint": "bun --filter \"*\" lint",
     "typecheck": "bun --filter \"*\" typecheck",
